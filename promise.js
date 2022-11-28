@@ -8,6 +8,5 @@ const p = new Promise((resolve,reject)=>{
     // reject(new Error('message'));
 });
 
-p
- .then(result => console.log('Result',result))
+p.then(result => console.log('Result',result))
  .catch(err => console.log('Error',err.message));
