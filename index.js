@@ -1,21 +1,23 @@
 //Asynchronous
 console.log('Before');
-getUser(1,(user) => {
-
-    getRepositories(user.gitHubUsername,(repos) => {
-
-       getCommits(repo,(commits) => {
-        
-          
-          
-       });
-    });
-
-});
-
-
-
+getUser(1,getRepositories);
 console.log('After');
+
+function getRepositories(user) {
+    getRepositories(user.gitHubUsername,getCommits);
+}
+
+
+function getCommits(repos) {
+    getCommits(repos,displayCommits);
+}
+
+
+//displaycommits
+function displayCommits(commits) {
+    console.log(commits);
+}
+
 
 // Synchronous
 console.log('Before');
