@@ -1,11 +1,11 @@
 console.log('Before');
-getUser(1,(user) => {
-     getRepositories(user.gitHubUsername,(repos) => {
-         getCommits(repos[0],(commits) => {
-            console.log(commits);
-         })
-     })
-});
+// getUser(1,(user) => {
+//      getRepositories(user.gitHubUsername,(repos) => {
+//          getCommits(repos[0],(commits) => {
+//             console.log(commits);
+//          })
+//      })
+// });
 
 getUser(1).then(user => getRepositories(user.gitHubUsername))
            .then(repos => getCommits(repos[0]))
@@ -14,11 +14,22 @@ getUser(1).then(user => getRepositories(user.gitHubUsername))
 
 console.log('After');
 
+async function displayCommits() {
+
+    const user = await getUser(1);
+    const repos = await getRepositories(user.gitHubUsername);
+    const commits = await getCommits(repos[0]);
+    console.log(commits);
+
+}
+
+displayCommits();
+
 
 function getUser(id,callback) {
     return new Promise((resolve,reject) => {
        setTimeout(() => {
-        console.log('Reading a user from a database...'); 
+        console.log(`Reading a user from a database...${id}`); 
        },2000);
     });
 }
