@@ -7,8 +7,9 @@ getUser(1,(user) => {
      })
 });
 
-const p = getUser(1);
-p.then(user => console.log(user));
+getUser(1).then(user => getRepositories(user.gitHubUsername))
+           .then(repos => getCommits(repos[0]))
+           .then(commits => console.log('Commits',commits));
 
 console.log('After');
 
@@ -46,11 +47,11 @@ function getCommits(repo) {
 
 
 // Synchronous
-console.log('Before');
-const user = getUser(1);
-const repos = getRepositories(user.gitHubUsername);
-const commits = getCommits(repos[0]);
-console.log('After');
+// console.log('Before');
+// const user = getUser(1);
+// const repos = getRepositories(user.gitHubUsername);
+// const commits = getCommits(repos[0]);
+// console.log('After');
 
 
 //Get the repositories
