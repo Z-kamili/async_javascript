@@ -7,6 +7,8 @@ getUser(1,(user) => {
      })
 });
 
+const p = getUser(1);
+p.then(user => console.log(user));
 
 console.log('After');
 
@@ -32,18 +34,15 @@ function getRepositories(username){
 }
 
 
-function getCommits(repo,callback) {
-    setTimeout(() => {
-        console.log('Calling GitHub API...');
-        callback(['commit']);
-      },2000);
+function getCommits(repo) {
+    return new Promise((resolve,reject) => {
+        setTimeout(() => {
+            console.log('Calling GitHub API...');
+            resolve(['commit']);
+          },2000);
+    }); 
+
 }
-
-
-//displaycommits
-// function displayCommits(commits) {
-//     console.log(commits);
-// }
 
 
 // Synchronous
@@ -54,20 +53,15 @@ const commits = getCommits(repos[0]);
 console.log('After');
 
 
-
-
-
 //Get the repositories
-function getRepositories(username,callback){
+// function getRepositories(username,callback){
 
-    setTimeout(() => {
+//     setTimeout(() => {
+//         console.log('Calling GitHub API...');
+//         resolve(['repo1','repo2','repo3']);
+//     },2000);
 
-        console.log('Calling GitHub API...');
-        callback(['repo1','repo2','repo3']);
-
-    },2000);
-
-}
+// }
 
 
 
